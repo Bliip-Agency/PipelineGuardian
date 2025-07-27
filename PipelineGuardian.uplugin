@@ -1,0 +1,26 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "PipelineGuardian",
+	"Description": "An editor plugin for deep asset analysis to maintain pipeline integrity.",
+	"Category": "Other",
+	"CreatedBy": "Akshay Kakade",
+	"CreatedByURL": "https://www.linkedin.com/in/iamakshaykakade/",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"CanContainContent": false,
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "PipelineGuardian",
+			"Type": "Editor",
+			"LoadingPhase": "Default"
+		}
+	],
+	"Plugins": [
+	]
+}
