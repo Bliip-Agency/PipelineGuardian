@@ -30,7 +30,7 @@ Pipeline Guardian is designed to catch common asset issues before they impact yo
 | **Lightmap UV** | Identifies missing/invalid lightmap UV configuration | ✅ |
 | **UV Overlapping** | Detects overlapping UV coordinates across multiple channels | ❌ |
 | **Triangle Count** | Performance impact analysis with configurable thresholds | ❌ |
-| **Degenerate Faces** | Zero-area triangle detection and removal | ✅ |
+| **Degenerate Faces** | Zero-area triangle detection | ❌ |
 | **Collision** | Missing collision geometry and complexity analysis | ✅ |
 | **Nanite Suitability** | Automatic Nanite enable/disable recommendations | ✅ |
 | **Material Slots** | Slot count validation and empty slot management | ✅ |
