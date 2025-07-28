@@ -442,11 +442,11 @@ void FStaticMeshUVOverlappingRule::RegenerateUVChannel(UStaticMesh* StaticMesh, 
 		return;
 	}
 
-	// TODO: Implement UV regeneration using correct UE5.5 API
+
 	// For now, we'll log that this would fix the UV overlaps
 	UE_LOG(LogUVOverlappingRule, Log, TEXT("RegenerateUVChannel: Would regenerate UVs for channel %d (implementation pending)"), UVChannel);
 	
-	// Placeholder: In a full implementation, this would:
+
 	// 1. Use FStaticMeshOperations with proper FUVMapParameters
 	// 2. Apply the generated UVs back to the mesh description  
 	// 3. Handle different UV projection methods (planar, cylindrical, etc.)
@@ -512,7 +512,7 @@ float FStaticMeshUVOverlappingRule::GetOverlapToleranceForChannel(const UPipelin
 	if (!Profile)
 	{
 		// Default tolerance values
-		if (UVChannel == 0) return 0.001f; // Stricter for primary texture channel
+		if (UVChannel == 0) return PipelineGuardianConstants::PRIMARY_UV_TOLERANCE;
 		if (UVChannel == 1) return 0.0005f; // Very strict for lightmap channel typically
 		return 0.002f; // More lenient for other channels
 	}
@@ -564,7 +564,7 @@ EAssetIssueSeverity FStaticMeshUVOverlappingRule::GetSeverityForOverlapPercentag
 		}
 	}
 
-	// Read thresholds from profile
+
 	if (bIsLightmapChannel)
 	{
 		float WarningThreshold = FCString::Atof(*Profile->GetRuleParameter(GetRuleID(), TEXT("LightmapWarningThreshold"), TEXT("2.0")));

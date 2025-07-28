@@ -39,7 +39,6 @@ bool FStaticMeshTriangleCountRule::Check(UObject* Asset, const UPipelineGuardian
 		return false;
 	}
 
-	// Get triangle count thresholds from settings (base threshold + percentage above)
 	const UPipelineGuardianSettings* Settings = GetDefault<UPipelineGuardianSettings>();
 	if (!Settings)
 	{
@@ -47,13 +46,11 @@ bool FStaticMeshTriangleCountRule::Check(UObject* Asset, const UPipelineGuardian
 		return false;
 	}
 	
-	// Check if triangle count rule is enabled
 	if (!Settings->bEnableStaticMeshTriangleCountRule)
 	{
-		return false; // Rule is disabled
+		return false;
 	}
 	
-	// Get current triangle count for LOD0
 	int32 CurrentTriangleCount = GetTriangleCount(StaticMesh, 0);
 	if (CurrentTriangleCount == 0)
 	{
@@ -61,16 +58,13 @@ bool FStaticMeshTriangleCountRule::Check(UObject* Asset, const UPipelineGuardian
 		return false;
 	}
 	
-	// Get base threshold and percentage thresholds
 	int32 BaseThreshold = Settings->TriangleCountBaseThreshold;
 	float WarningPercentage = Settings->TriangleCountWarningPercentage;
 	float ErrorPercentage = Settings->TriangleCountErrorPercentage;
 	
-	// Calculate actual thresholds: Base + (Base * Percentage)
 	int32 WarningThreshold = BaseThreshold + FMath::RoundToInt(BaseThreshold * WarningPercentage / 100.0f);
 	int32 ErrorThreshold = BaseThreshold + FMath::RoundToInt(BaseThreshold * ErrorPercentage / 100.0f);
 
-	// Check if triangle count exceeds thresholds
 	EAssetIssueSeverity Severity = DetermineSeverity(CurrentTriangleCount, WarningThreshold, ErrorThreshold);
 	
 	if (Severity != EAssetIssueSeverity::Info) // Info means no issue

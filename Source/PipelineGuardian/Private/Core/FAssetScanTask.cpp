@@ -46,28 +46,27 @@ void FAssetScanTask::DoWork()
         return;
     }
 
-    // This task no longer directly performs AssetRegistry discovery for Project/Folder modes.
-    // It primarily handles the pre-discovered assets for Selected/OpenLevel modes and acts as a signal for GT processing.
+
 
     switch (ScanMode)
     {
         case EAssetScanMode::Project:
             TaskCompletionMessage = LOCTEXT("ProjectScanPendingGT", "Project asset discovery pending on Game Thread...");
-            // AssetsToPassToDelegate remains empty; Game Thread will use ScanMode and ScanParameters (which is empty for /Game/)
+
             break;
 
         case EAssetScanMode::SelectedFolders:
             TaskCompletionMessage = FText::Format(LOCTEXT("FolderScanPendingGTFmt", "Selected folder(s) asset discovery pending on Game Thread for {0} path(s)..."), ScanParameters.Num());
-            // AssetsToPassToDelegate remains empty; Game Thread will use ScanMode and ScanParameters (folder paths)
+
             break;
 
         case EAssetScanMode::SelectedAssets:
-            AssetsToPassToDelegate = PreDiscoveredAssets; // Use assets discovered on GT before task start
+            AssetsToPassToDelegate = PreDiscoveredAssets;
             TaskCompletionMessage = FText::Format(LOCTEXT("SelectedAssetsReadyForAnalysisFmt", "{0} selected asset(s) ready for analysis."), AssetsToPassToDelegate.Num());
             break;
 
         case EAssetScanMode::OpenLevel:
-            AssetsToPassToDelegate = PreDiscoveredAssets; // Use assets discovered on GT before task start
+            AssetsToPassToDelegate = PreDiscoveredAssets;
             TaskCompletionMessage = FText::Format(LOCTEXT("OpenLevelAssetsReadyForAnalysisFmt", "{0} open level asset(s) ready for analysis."), AssetsToPassToDelegate.Num());
             break;
 

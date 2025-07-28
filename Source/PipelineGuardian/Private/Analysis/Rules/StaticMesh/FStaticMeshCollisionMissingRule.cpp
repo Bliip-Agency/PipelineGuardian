@@ -228,7 +228,7 @@ bool FStaticMeshCollisionMissingRule::CanSafelyGenerateCollision(const UStaticMe
 	int32 TriangleCount = LODResource->GetNumTriangles();
 	
 	// Don't auto-generate for very complex meshes (more than 50k triangles for testing)
-	if (TriangleCount > 50000)
+	if (TriangleCount > PipelineGuardianConstants::MAX_TRIANGLE_COUNT_FOR_COLLISION_GENERATION)
 	{
 		UE_LOG(LogPipelineGuardian, Warning, TEXT("Cannot auto-generate collision for %s: Too complex (%d triangles)"), 
 			*StaticMesh->GetName(), TriangleCount);

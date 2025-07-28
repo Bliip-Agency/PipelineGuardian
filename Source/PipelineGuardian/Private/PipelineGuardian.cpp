@@ -58,30 +58,12 @@ void FPipelineGuardianModule::StartupModule()
 		UE_LOG(LogPipelineGuardian, Error, TEXT("Failed to load PipelineGuardianSettings (mutable)!"));
 	}
 
-	// Manual Settings Registration Test - Ensure this is commented out for automatic discovery test
-	/* ISettingsModule* SettingsModule = FModuleManager::GetModulePtr<ISettingsModule>("Settings");
-	if (SettingsModule)
-	{
-		SettingsModule->RegisterSettings("Project", // Container Name
-			"PipelineGuardianTestCategory",          // Category Name (under which sections are grouped)
-			"PipelineGuardianTestSection",           // Section Name (the actual entry in the list)
-			LOCTEXT("PipelineGuardianTestDisplayName", "Pipeline Guardian (Manual Test)"),
-			LOCTEXT("PipelineGuardianSettingsDescription_Manual", "Manually registered Pipeline Guardian settings."),
-			GetMutableDefault<UPipelineGuardianSettings>()
-		);
-		UE_LOG(LogPipelineGuardian, Warning, TEXT("Attempted manual registration of settings UI section for 'PipelineGuardianTestSection'."));
-	}*/
+
 }
 
 void FPipelineGuardianModule::ShutdownModule()
 {
-	// Manual Settings Unregistration Test - Ensure this is commented out
-	/* ISettingsModule* SettingsModulePtr = FModuleManager::GetModulePtr<ISettingsModule>("Settings");
-	if (SettingsModulePtr)
-	{
-		SettingsModulePtr->UnregisterSettings("Project", "PipelineGuardianTestCategory", "PipelineGuardianTestSection");
-		UE_LOG(LogPipelineGuardian, Warning, TEXT("Attempted manual unregistration of settings UI section for 'PipelineGuardianTestSection'."));
-	}*/
+
 
 	// This function may be called during shutdown to clean up your module.  For modules that support dynamic reloading,
 	// we call this function before unloading the module.

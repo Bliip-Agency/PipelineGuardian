@@ -146,7 +146,7 @@ bool FStaticMeshVertexColorMissingRule::HasMissingVertexColors(const UStaticMesh
 	// Get triangle count
 	int32 TriangleCount = StaticMesh->GetRenderData()->LODResources[0].GetNumTriangles();
 	
-	// Only check for vertex colors if mesh meets the threshold
+
 	if (TriangleCount < RequiredThreshold)
 	{
 		return false;
@@ -254,7 +254,7 @@ bool FStaticMeshVertexColorMissingRule::CanSafelyGenerateVertexColors(const USta
 	int32 TriangleCount = LODResource->GetNumTriangles();
 	
 	// Don't auto-generate for extremely complex meshes (more than 100k triangles)
-	if (TriangleCount > 100000)
+	if (TriangleCount > PipelineGuardianConstants::MAX_TRIANGLE_COUNT_FOR_VERTEX_COLOR_CHECK)
 	{
 		UE_LOG(LogPipelineGuardian, Warning, TEXT("Cannot auto-generate vertex colors for %s: Too complex (%d triangles)"), 
 			*StaticMesh->GetName(), TriangleCount);

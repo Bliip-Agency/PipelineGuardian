@@ -51,7 +51,7 @@ void FStaticMeshAnalyzer::InitializeRules()
 	StaticMeshRules.Add(MakeShared<FStaticMeshLightmapResolutionRule>());
 	StaticMeshRules.Add(MakeShared<FStaticMeshSocketNamingRule>());
 	
-	// TODO: Add more rules as they are implemented
+
 	
 	UE_LOG(LogPipelineGuardian, Log, TEXT("FStaticMeshAnalyzer initialized with %d rules"), StaticMeshRules.Num());
 }

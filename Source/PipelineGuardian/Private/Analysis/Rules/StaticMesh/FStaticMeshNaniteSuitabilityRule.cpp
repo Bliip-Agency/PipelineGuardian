@@ -181,7 +181,7 @@ bool FStaticMeshNaniteSuitabilityRule::CanSafelyOptimizeNanite(const UStaticMesh
 	int32 TriangleCount = LODResource->GetNumTriangles();
 	
 	// Don't auto-optimize for extremely complex meshes (more than 1M triangles)
-	if (TriangleCount > 1000000)
+	if (TriangleCount > PipelineGuardianConstants::MAX_TRIANGLE_COUNT_FOR_NANITE_ENABLE)
 	{
 		UE_LOG(LogPipelineGuardian, Warning, TEXT("Cannot auto-optimize Nanite for %s: Too complex (%d triangles)"), 
 			*StaticMesh->GetName(), TriangleCount);

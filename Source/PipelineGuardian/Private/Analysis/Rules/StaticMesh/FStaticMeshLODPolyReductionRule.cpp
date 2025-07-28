@@ -245,17 +245,17 @@ bool FStaticMeshLODPolyReductionRule::CanFixLODReduction(UStaticMesh* StaticMesh
 
 EAssetIssueSeverity FStaticMeshLODPolyReductionRule::GetSeverityForReduction(float ActualReduction, float MinReduction, float WarningThreshold, float ErrorThreshold) const
 {
-	// If actual reduction is below error threshold, it's critical
+
 	if (ActualReduction < ErrorThreshold)
 	{
 		return EAssetIssueSeverity::Error;
 	}
-	// If actual reduction is below warning threshold, it's a warning
+
 	else if (ActualReduction < WarningThreshold)
 	{
 		return EAssetIssueSeverity::Warning;
 	}
-	// If actual reduction is below minimum but above warning threshold, it's info
+
 	else if (ActualReduction < MinReduction)
 	{
 		return EAssetIssueSeverity::Info;
@@ -316,8 +316,7 @@ void FStaticMeshLODPolyReductionRule::FixLODReduction(UStaticMesh* StaticMesh, i
 	// Calculate the target triangle percentage relative to LOD0 (this is what UE uses internally)
 	float TargetTrianglePercentage = (float)TargetTriangleCount / (float)BaseLODTriangles;
 	
-	// Clamp to reasonable bounds
-	TargetTrianglePercentage = FMath::Clamp(TargetTrianglePercentage, 0.01f, 1.0f);
+	TargetTrianglePercentage = FMath::Clamp(TargetTrianglePercentage, PipelineGuardianConstants::MIN_LOD_REDUCTION_CLAMP, PipelineGuardianConstants::MAX_LOD_REDUCTION_CLAMP);
 	
 	UE_LOG(LogPipelineGuardian, Log, TEXT("FStaticMeshLODPolyReductionRule: Target for LOD%d: %d triangles (%.1f%% of LOD0, %.1f%% reduction from LOD%d)"), 
 		ProblematicLODIndex, TargetTriangleCount, TargetTrianglePercentage * 100.0f, TargetReductionPercentage, ProblematicLODIndex - 1);

@@ -176,7 +176,7 @@ bool FStaticMeshCollisionComplexityRule::SimplifyCollision(UStaticMesh* StaticMe
 
 	// Disable UseComplexAsSimple - in UE 5.5 this might be set differently
 	// For now, we'll just clear the complex collision primitives
-	// TODO: Implement proper UseComplexAsSimple handling for UE 5.5
+
 
 	// Enable auto-convex collision generation
 	BodySetup->bGenerateMirroredCollision = false;

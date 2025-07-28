@@ -254,7 +254,7 @@ void FStaticMeshLODMissingRule::GenerateLODs(UStaticMesh* StaticMesh, int32 Targ
 		}
 		
 		// Clamp to reasonable bounds
-		TargetTrianglePercentage = FMath::Clamp(TargetTrianglePercentage, 0.01f, 1.0f);
+		TargetTrianglePercentage = FMath::Clamp(TargetTrianglePercentage, PipelineGuardianConstants::MIN_LOD_REDUCTION_CLAMP, PipelineGuardianConstants::MAX_LOD_REDUCTION_CLAMP);
 		
 		// Create reduction settings
 		FMeshReductionSettings ReductionSettings;

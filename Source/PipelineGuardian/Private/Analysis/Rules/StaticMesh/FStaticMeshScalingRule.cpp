@@ -188,14 +188,14 @@ bool FStaticMeshScalingRule::HasExtremeScaleValues(const UStaticMesh* StaticMesh
 	bool HasExtremeValues = false;
 	
 	// Check for very large scale values (>1000 units)
-	if (Size.X > 1000.0f || Size.Y > 1000.0f || Size.Z > 1000.0f)
+	if (Size.X > PipelineGuardianConstants::MAX_SCALE_THRESHOLD || Size.Y > PipelineGuardianConstants::MAX_SCALE_THRESHOLD || Size.Z > PipelineGuardianConstants::MAX_SCALE_THRESHOLD)
 	{
 		OutIssues.Add(TEXT("Extreme scale values (>1000 units)"));
 		HasExtremeValues = true;
 	}
 	
 	// Check for very small scale values (<0.001 units)
-	if (Size.X < 0.001f || Size.Y < 0.001f || Size.Z < 0.001f)
+	if (Size.X < PipelineGuardianConstants::MIN_SCALE_THRESHOLD || Size.Y < PipelineGuardianConstants::MIN_SCALE_THRESHOLD || Size.Z < PipelineGuardianConstants::MIN_SCALE_THRESHOLD)
 	{
 		OutIssues.Add(TEXT("Very small scale values (<0.001 units)"));
 		HasExtremeValues = true;

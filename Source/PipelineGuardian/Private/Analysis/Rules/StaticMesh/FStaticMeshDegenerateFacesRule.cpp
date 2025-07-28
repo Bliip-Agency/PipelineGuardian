@@ -171,7 +171,7 @@ bool FStaticMeshDegenerateFacesRule::RemoveDegenerateFaces(UStaticMesh* StaticMe
 
 	UE_LOG(LogPipelineGuardian, Log, TEXT("RemoveDegenerateFaces: Auto-fix not implemented yet for %s"), *StaticMesh->GetName());
 	
-	// TODO: Implement proper degenerate face removal
+
 	// This requires careful mesh modification and rebuilding
 	// For now, return false to indicate manual intervention is needed
 	
@@ -180,7 +180,7 @@ bool FStaticMeshDegenerateFacesRule::RemoveDegenerateFaces(UStaticMesh* StaticMe
 
 bool FStaticMeshDegenerateFacesRule::CanSafelyRemoveDegenerateFaces(const UStaticMesh* StaticMesh, int32 DegenerateFaceCount, int32 TotalFaceCount) const
 {
-	// TODO: Implement proper safety checks when auto-fix is implemented
+
 	// For now, return false to disable auto-fix functionality
 	
 	UE_LOG(LogPipelineGuardian, Log, TEXT("CanSafelyRemoveDegenerateFaces: Auto-fix disabled for %s"), *StaticMesh->GetName());

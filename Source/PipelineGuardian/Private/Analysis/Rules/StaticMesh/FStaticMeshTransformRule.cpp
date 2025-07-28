@@ -98,8 +98,7 @@ bool FStaticMeshTransformRule::HasProblematicPivot(const UStaticMesh* StaticMesh
 	// Calculate the distance from the mesh center to the pivot (origin)
 	float DistanceFromCenter = FVector::Dist(MeshCenter, PivotOffset);
 	
-	// Check if the pivot is too far from the mesh center using the provided thresholds
-	// Use the smaller of the two thresholds for detection (WarningDistance)
+
 	float Threshold = FMath::Min(WarningDistance, ErrorDistance);
 	
 	OutPivotOffset = PivotOffset;
@@ -124,21 +123,21 @@ bool FStaticMeshTransformRule::HasUnappliedDCCTransformations(const UStaticMesh*
 	
 	// Check for pivot not at origin (but this might be intentional for certain asset types)
 	float DistanceFromOrigin = FVector::Dist(MeshCenter, FVector::ZeroVector);
-	if (DistanceFromOrigin > 1000.0f) // Very far from origin
+	if (DistanceFromOrigin > PipelineGuardianConstants::MAX_PIVOT_DISTANCE)
 	{
 		OutIssues.Add(TEXT("Pivot very far from origin"));
 		HasIssues = true;
 	}
 	
 	// Check for extreme size values that might indicate unapplied scale
-	if (MeshSize.X > 1000.0f || MeshSize.Y > 1000.0f || MeshSize.Z > 1000.0f)
+	if (MeshSize.X > PipelineGuardianConstants::MAX_SCALE_THRESHOLD || MeshSize.Y > PipelineGuardianConstants::MAX_SCALE_THRESHOLD || MeshSize.Z > PipelineGuardianConstants::MAX_SCALE_THRESHOLD)
 	{
 		OutIssues.Add(TEXT("Extreme size values (>1000 units)"));
 		HasIssues = true;
 	}
 	
 	// Check for very small size values
-	if (MeshSize.X < 0.001f || MeshSize.Y < 0.001f || MeshSize.Z < 0.001f)
+	if (MeshSize.X < PipelineGuardianConstants::MIN_SCALE_THRESHOLD || MeshSize.Y < PipelineGuardianConstants::MIN_SCALE_THRESHOLD || MeshSize.Z < PipelineGuardianConstants::MIN_SCALE_THRESHOLD)
 	{
 		OutIssues.Add(TEXT("Very small size values (<0.001 units)"));
 		HasIssues = true;

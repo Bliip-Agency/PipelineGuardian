@@ -16,8 +16,8 @@ UPipelineGuardianSettings::UPipelineGuardianSettings()
 	, MinRequiredLODs(3) // Default to 3 LODs
 	, bEnableStaticMeshLODPolyReductionRule(true) // Default to enabled
 	, MinLODReductionPercentage(30.0f) // Default to 30% reduction
-	, LODReductionWarningThreshold(20.0f) // Default to 20% warning threshold
-	, LODReductionErrorThreshold(10.0f) // Default to 10% error threshold
+	, LODReductionWarningThreshold(20.0f)
+	, LODReductionErrorThreshold(10.0f)
 	, bFollowLODQualitySettingsWhenCreating(true) // Default to enabled
 	, bEnableStaticMeshLightmapUVRule(true) // Default to enabled
 	, LightmapUVIssueSeverity(EAssetIssueSeverity::Warning) // Default to Warning

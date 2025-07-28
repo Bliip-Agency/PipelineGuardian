@@ -60,7 +60,7 @@ void SPipelineGuardianWindow::Construct(const FArguments& InArgs)
 				.OnClicked(this, &SPipelineGuardianWindow::OnAnalyzeProjectClicked)
 				.IsEnabled(this, &SPipelineGuardianWindow::IsAnalysisNotRunning)
 			]
-			// Analyze Selected Folder Button
+		
 			+ SHorizontalBox::Slot()
 			.Padding(2.f)
 			[
@@ -227,7 +227,7 @@ void SPipelineGuardianWindow::OnAssetScanPhaseComplete(
 		TArray<FAssetData> AssetsToActuallyAnalyze = DiscoveredAssetsFromTask; // Start with what task provided (for Selected/OpenLevel)
 		FText FinalOperationSummaryMessage = TaskCompletionMessage;
 
-		// If Project or Folder scan, perform the actual AssetRegistry discovery now on Game Thread
+	
 		if (CompletedScanMode == EAssetScanMode::Project)
 		{
 			SetAnalysisInProgress(true, LOCTEXT("GTPhase_ProjectScan", "Discovering project assets..."));
@@ -298,7 +298,7 @@ void SPipelineGuardianWindow::OnAssetScanPhaseComplete(
 		}
 		else if (CompletedScanMode == EAssetScanMode::Project || CompletedScanMode == EAssetScanMode::SelectedFolders)
 		{ 
-			// If project/folder scan yielded no assets after GT discovery
+	
 			FinalOperationSummaryMessage = FText::Format(LOCTEXT("NoAssetsFoundAfterGTDiscovery", "{0} No assets found to analyze after detailed scan."), FinalOperationSummaryMessage);
 		}
 

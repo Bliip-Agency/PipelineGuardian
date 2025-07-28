@@ -145,7 +145,7 @@ bool FStaticMeshLightmapResolutionRule::CanSafelySetLightmapResolution(const USt
 	int32 TriangleCount = LODResource->GetNumTriangles();
 	
 	// Don't auto-adjust for extremely complex meshes (more than 1M triangles)
-	if (TriangleCount > 1000000)
+	if (TriangleCount > PipelineGuardianConstants::MAX_TRIANGLE_COUNT_FOR_LIGHTMAP_RESOLUTION)
 	{
 		UE_LOG(LogPipelineGuardian, Warning, TEXT("Cannot auto-adjust lightmap resolution for %s: Too complex (%d triangles)"), 
 			*StaticMesh->GetName(), TriangleCount);
